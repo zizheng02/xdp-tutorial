@@ -1,7 +1,7 @@
 # -*- fill-column: 76; -*-
 #+TITLE: XDP Programming Hands-On Tutorial
 #+OPTIONS: ^:nil
-## My progress
+* My progress
 - basic01-xdp-pass      ✅
 
 - basic02-prog-by-name  ✅
@@ -9,9 +9,11 @@
 - basic03-map-counter   ✅
 
 - basic04-pinning-maps  ✅
-## My note
+
+* My note
 - [basic](https://cokbmuytp4.feishu.cn/wiki/wikcnA3zzAmVanBGOoOtw8eTFdL)
-## Overview
+
+* Overview
 This repository contains a tutorial that aims to introduce you to the basic
 steps needed to effectively write programs for the eXpress Data Path (XDP)
 system in the Linux kernel, which offers high-performance programmable
