@@ -86,19 +86,30 @@ int pin_maps_in_bpf_object(struct bpf_object *bpf_obj, const char *subdir)
 		fprintf(stderr, "ERR: creating map_name\n");
 		return EXIT_FAIL_OPTION;
 	}
-
+	
 	/* Existing/previous XDP prog might not have cleaned up */
 	if (access(map_filename, F_OK ) != -1 ) {
 		if (verbose)
 			printf(" - Unpinning (remove) prev maps in %s/\n",
 			       pin_dir);
 
-		/* Basically calls unlink(3) on map_filename */
-		err = bpf_object__unpin_maps(bpf_obj, pin_dir);
-		if (err) {
-			fprintf(stderr, "ERR: UNpinning maps in %s\n", pin_dir);
+		/*reuse exist bpf map*/
+		struct bpf_map *exist_bpf_map = bpf_object__find_map_by_name(bpf_obj, map_name);
+		int fd = bpf_map__fd(exist_bpf_map);
+		err = bpf_map__reuse_fd(exist_bpf_map,fd);
+		if(err)
+		{
+			fprintf(stderr, "ERR: Reusing maps in %s\n", pin_dir);
 			return EXIT_FAIL_BPF;
 		}
+		else
+			return 0;
+		// /* Basically calls unlink(3) on map_filename */
+		// err = bpf_object__unpin_maps(bpf_obj, pin_dir);
+		// if (err) {
+		// 	fprintf(stderr, "ERR: UNpinning maps in %s\n", pin_dir);
+		// 	return EXIT_FAIL_BPF;
+		// }
 	}
 	if (verbose)
 		printf(" - Pinning maps in %s/\n", pin_dir);
