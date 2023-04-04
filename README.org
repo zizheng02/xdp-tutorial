@@ -1,4 +1,14 @@
 # -*- fill-column: 76; -*-
+## My progress
+- basic01-xdp-pass      ✅
+
+- basic02-prog-by-name  ✅
+
+- basic03-map-counter   ✅
+
+- basic04-pinning-maps  ✅
+## My note
+- [basic](https://cokbmuytp4.feishu.cn/wiki/wikcnA3zzAmVanBGOoOtw8eTFdL)
 #+TITLE: XDP Programming Hands-On Tutorial
 #+OPTIONS: ^:nil
 
